@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import ApiContextProvider from "./context/ApiContext";
+import Api from "./component/Api";
+import TvContextProvider from "./context/TvContext";
+import Tv from "./component/Tv";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import ApiState from "./state/ApiState";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ApiState />
+      <div>
+        <Link to="/Api">Flim</Link>
+      </div>
+      <>
+        <ApiContextProvider>
+          <Api />
+        </ApiContextProvider>
+        <TvContextProvider>
+          <Tv />
+        </TvContextProvider>
+      </>
+      <>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/Api" element={<Api />}></Route>
+          </Routes>
+        </BrowserRouter>
+      </>
     </div>
   );
 }
