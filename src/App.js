@@ -4,31 +4,30 @@ import Api from "./component/Api";
 import TvContextProvider from "./context/TvContext";
 import Tv from "./component/Tv";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import ApiState from "./state/ApiState";
+import Navbar from "./component/Navbar";
+import Register from "./component/Register";
 
 function App() {
   return (
-    <div className="App">
-      <ApiState />
-      <div>
-        <Link to="/Api">Flim</Link>
+    <BrowserRouter>
+      <div className="App">
+        <div>
+          <Navbar />
+        </div>
+        <>
+          <ApiContextProvider>
+            <TvContextProvider>
+              <Routes>
+                <Route path="/api" element={<Api />} />
+                <Route path="/tv" element={<Tv />} />
+                <Route path="register" element={<Register />} />
+              </Routes>
+            </TvContextProvider>
+          </ApiContextProvider>
+        </>
+        <></>
       </div>
-      <>
-        <ApiContextProvider>
-          <Api />
-        </ApiContextProvider>
-        <TvContextProvider>
-          <Tv />
-        </TvContextProvider>
-      </>
-      <>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/Api" element={<Api />}></Route>
-          </Routes>
-        </BrowserRouter>
-      </>
-    </div>
+    </BrowserRouter>
   );
 }
 

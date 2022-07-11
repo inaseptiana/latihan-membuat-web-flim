@@ -11,12 +11,6 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App />
-    {/* <BrowserRouter>
-      <Link to="/Api">Flim</Link>
-      <Routes>
-        <Route path="/Api" element={<Api />}></Route>
-      </Routes>
-    </BrowserRouter> */}
   </React.StrictMode>
 );
 
